@@ -15,7 +15,47 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <style>
+      .highlight {
+        background-color: aquamarine;
+      }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      function updateContent() {
+        var inputField = document.getElementById('searchInput');
+        var text = inputField.value;
+        if(text.length > 2) {
+          var url = "/file/search/" + text;
+          //document.getElementById('content1').src = url;
+          console.log(url);
+
+          $.ajax({
+            url: url,
+            cache: false,
+            success: function(html){
+              $("#search-result-content").html(html);
+              highlight(text);
+            }
+          });
+        } else {
+          $("#search-result-content").html("Lütfen en az 3 karakter girin.");
+        }
+      }
+      function highlight(text)  {
+        var innerHTML = $("#search-result-content").html();
+        var replace = "<span class='highlight'>" + text + "</span>";
+        innerHTML = replaceAll(innerHTML, text, replace);
+        $("#search-result-content").html(innerHTML);
+      }
+      function replaceAll(str, find, replace) {
+        return str.replace(new RegExp(find, 'g'), replace);
+      }
+    </script>
 	</head>
+
 	<body class="is-loading">
 
 		<!-- Wrapper -->
@@ -23,35 +63,26 @@
 
 				<!-- Main -->
 					<section id="main">
-						<form action="/file/upload" method="post" enctype="multipart/form-data">
-						    Yüklenecek dosyayı seçiniz:
-						    <input type="file" name="fileToUpload" id="fileToUpload">
-						    <input type="submit" value="Yükle" name="submit">
-						</form>
 
 						<header>
-							<h1>The Tech Company</h1>
-							<h5>Web & Mobile Application Development</h5>
+              <form action="/file/upload" method="post" enctype="multipart/form-data">
+                Dosya Yükle:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Yükle" name="submit">
+              </form>
 						</header>
 
+            <hr />
+
 						<body>
-							<p>Selam nasılsın test ediyorum ;)</p>
-							file upload olacak mı?
+
 						</body>
 
+            <label>Lütfen arama metnini giriniz</label>
+            <input type="text" id="searchInput" onkeyup="updateContent()">
+            <div id="search-result-content"></div>
 
-						<hr />
-
-
-            <body>
-            <%  var results = FileContent.find({ where: { text: {'contains' : 'a'} }, limit: 10 });  %>
-
-            <% for(var i=0; i<results.length; i++) {%>
-            <li><%= results[i].text %></li>
-            <% } %>
-
-            </body>
-
+            <hr />
 
 						<footer>
 							<ul class="icons">
@@ -83,4 +114,6 @@
 			</script>
 
 	</body>
+
+
 </html>
