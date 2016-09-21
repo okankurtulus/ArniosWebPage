@@ -6,13 +6,13 @@
  */
 
 var textract = require('textract');
+var searchIndex = require('search-index')
 
 module.exports = {
-	hi: function (req, res) {
+	  hi: function (req, res) {
     	return res.send('Hi there!');
   	},
   	upload: function(req, res) {
-
       req.file('fileToUpload').upload({
           // don't allow the total upload size to exceed ~10MB
           maxBytes: 10000000
@@ -45,6 +45,30 @@ module.exports = {
             });
           }
       });
+    },
+    search: function(req, res) {
+      var key = req.param('id');
+      FileContent.find({ where: { text: {'contains' : key} }, limit: 10 }, function(err, results) {
+        sails.log.info("found " + results.length +"results");
+
+        var texts = [];
+        for(var i=0; i<results.length; i++) {
+          var text = results[i].text;
+
+          var limit = 30;
+          var index = text.indexOf(key);
+          while( index > -1 ) {
+            var result = text.substring(index-limit, index+limit);
+            texts.push(result);
+
+            text = text.substring(index+1, text.length - index-1);
+            index = text.indexOf(key);
+          }
+        }
+        res.view({"texts" : texts, "url":"/file/search/an"});
+
+      });
+
 
     }
 };
