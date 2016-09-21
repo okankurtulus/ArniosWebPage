@@ -54,4 +54,6 @@ module.exports.routes = {
   'get /file/upload': 'file/upload',
   'post /file/upload': 'file/upload',
 
+  'get /file/search/:key': 'file/search',
+
 };
