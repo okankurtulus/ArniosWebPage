@@ -1,0 +1,86 @@
+
+<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ISGB | Referans App</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<form action="/file/upload" method="post" enctype="multipart/form-data">
+						    Yüklenecek dosyayı seçiniz:
+						    <input type="file" name="fileToUpload" id="fileToUpload">
+						    <input type="submit" value="Yükle" name="submit">
+						</form>
+
+						<header>
+							<h1>The Tech Company</h1>
+							<h5>Web & Mobile Application Development</h5>
+						</header>
+
+						<body>
+							<p>Selam nasılsın test ediyorum ;)</p>
+							file upload olacak mı?
+						</body>
+
+
+						<hr />
+
+
+            <body>
+            <%  var results = FileContent.find({ where: { text: {'contains' : 'a'} }, limit: 10 });  %>
+
+            <% for(var i=0; i<results.length; i++) {%>
+            <li><%= results[i].text %></li>
+            <% } %>
+
+            </body>
+
+
+						<footer>
+							<ul class="icons">
+								<li><a href="http://twitter.com/arniostech" target="_blank" class="fa-twitter">Twitter</a></li>
+								<li><a href="http://facebook.com/arniostech" target="_blank" class="fa-facebook">Facebook</a></li>
+								<li><a href="mailto:info@arnios.com?Subject=About%20Arnios" class="fa-envelope-o">Mail</a></li>
+
+							</ul>
+						</footer>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Arnios</li>
+							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
+</html>

@@ -35,7 +35,7 @@ module.exports.routes = {
   '/': {
     //view: 'homepage'
     view: 'index'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -46,5 +46,12 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  '/isgb': {
+    view: 'isgb'
+  },
+
+  'get /file/upload': 'file/upload',
+  'post /file/upload': 'file/upload',
 
 };
