@@ -5,6 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 module.exports = {
 	active: function(req, res){
 		var lastActive = 1000 * 60; //5 minutes
@@ -28,8 +29,6 @@ module.exports = {
             if(location.auth && processedUsers.indexOf(location.auth.id) < 0) {
               locations.push(location);
               processedUsers.push(location.auth.id);
-            } else {
-              sails.log.info("did not process");
             }
           }
 	        return res.send(locations);
