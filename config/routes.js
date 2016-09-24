@@ -51,6 +51,10 @@ module.exports.routes = {
     view: 'isgb'
   },
 
+  '/about': {
+    view: 'index'
+  },
+
   'get /file/upload': 'file/upload',
   'post /file/upload': 'file/upload',
 
