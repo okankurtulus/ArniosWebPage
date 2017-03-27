@@ -27,7 +27,8 @@ module.exports = {
           } else {
 
             var filePath = uploadedFiles[0].fd;
-            textract.fromFileWithPath(filePath, function( error, text ) {
+            var config = { preserveLineBreaks : true}
+            textract.fromFileWithPath(filePath, config, function( error, text ) {
                 if(error) {
                   return res.negotiate(err);
                 } else {
